@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://banq2t0iaksth"]
+
+[ext_resource type="PackedScene" uid="uid://rkctq0272c87" path="res://GG Test Model10 GLTF.gltf" id="1_3hmqq"]
+[ext_resource type="Script" uid="uid://bs1b44ey37v3t" path="res://script_zondbe_main.gd" id="1_gol8u"]
+[ext_resource type="Script" uid="uid://cnq63b5u8ritb" path="res://script_zondbe_bodyparts.gd" id="2_yh48i"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gol8u"]
+size = Vector3(0.5, 1, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yh48i"]
+size = Vector3(0.52, 0.6, 0.55)
+
+[node name="Zondbe" type="CharacterBody3D" groups=["Zondbe"]]
+script = ExtResource("1_gol8u")
+hp = 100
+head_damage = 50.0
+body_damage = 20.0
+
+[node name="GG Test Model10 GLTF" parent="." groups=["Zondbe_Parts"] instance=ExtResource("1_3hmqq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0367857, 0, 0.0996778)
+
+[node name="BodyCollision" type="CollisionShape3D" parent="." groups=["Zondbe_Parts"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.414016, 0.0622746)
+shape = SubResource("BoxShape3D_gol8u")
+script = ExtResource("2_yh48i")
+
+[node name="HeadCollision" type="CollisionShape3D" parent="." groups=["Zondbe_Parts"]]
+transform = Transform3D(0.997789, 0, 0.0664655, 0, 1, 0, -0.0664655, 0, 0.997789, 0.033073, 1.22906, 0.101118)
+shape = SubResource("BoxShape3D_yh48i")
+debug_color = Color(0.0606634, 0.649857, 0, 0.42)
+script = ExtResource("2_yh48i")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[connection signal="is_hit" from="BodyCollision" to="." method="_on_body_collision_is_hit"]
+[connection signal="is_hit" from="HeadCollision" to="." method="_on_head_collision_is_hit"]

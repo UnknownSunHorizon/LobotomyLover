@@ -1,0 +1,35 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://d2f3mv0hbal0m"
+path.s3tc="res://.godot/imported/sm30_071_Dustbox01A_A_NRMR.jpg-c0cea3f59e9bae7a50e50f2b8b83d929.s3tc.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
+}
+
+[deps]
+
+source_file="res://RPD_ParkingLot_1.0_Y4hS6zh/textures/sm30_071_Dustbox01A_A_NRMR.jpg"
+dest_files=["res://.godot/imported/sm30_071_Dustbox01A_A_NRMR.jpg-c0cea3f59e9bae7a50e50f2b8b83d929.s3tc.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=1
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=1
+roughness/src_normal="res://RPD_ParkingLot_1.0_Y4hS6zh/textures/sm30_071_Dustbox01A_A_NRMR.jpg"
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0
