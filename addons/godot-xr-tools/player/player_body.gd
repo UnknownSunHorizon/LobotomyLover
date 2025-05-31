@@ -3,6 +3,7 @@
 class_name XRToolsPlayerBody
 extends CharacterBody3D
 
+signal is_hit(where)
 
 ## XR Tools Player Physics Body Script
 ##
@@ -868,3 +869,6 @@ static func find_instance(node: Node) -> XRToolsPlayerBody:
 		XRHelpers.get_xr_origin(node),
 		"*",
 		"XRToolsPlayerBody") as XRToolsPlayerBody
+
+func hit(damage):
+	is_hit.emit(damage)

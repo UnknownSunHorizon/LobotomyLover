@@ -1,4 +1,8 @@
+<<<<<<< Updated upstream
 [gd_scene load_steps=6 format=3 uid="uid://banq2t0iaksth"]
+=======
+[gd_scene load_steps=14 format=3 uid="uid://banq2t0iaksth"]
+>>>>>>> Stashed changes
 
 [ext_resource type="Script" uid="uid://bs1b44ey37v3t" path="res://Zondbe/script_zondbe_main.gd" id="1_gol8u"]
 [ext_resource type="PackedScene" uid="uid://b7b1bq65sviqi" path="res://GG Test Model10 GLTF.gltf" id="2_aw2qu"]
@@ -10,11 +14,59 @@ size = Vector3(0.5, 1, 0.5)
 [sub_resource type="BoxShape3D" id="BoxShape3D_yh48i"]
 size = Vector3(0.52, 0.6, 0.55)
 
+<<<<<<< Updated upstream
 [node name="Zondbe" type="CharacterBody3D" groups=["Zondbe"]]
 script = ExtResource("1_gol8u")
 hp = 100
 head_damage = 50.0
 body_damage = 40.0
+=======
+[sub_resource type="Curve" id="Curve_aw2qu"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.132075, 1), -0.173281, 0.0, 0, 1, Vector2(0.760377, 1), 0.0, -0.336858, 1, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_w8liw"]
+curve = SubResource("Curve_aw2qu")
+
+[sub_resource type="Curve" id="Curve_nplbr"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.132075, 1), -0.173281, 0.0, 0, 1, Vector2(0.760377, 1), 0.0, -0.336858, 1, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_bdqqy"]
+curve = SubResource("Curve_nplbr")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xkvyq"]
+inherit_velocity_ratio = 1.0
+spread = 180.0
+initial_velocity_min = 1.0
+initial_velocity_max = 3.0
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_bdqqy")
+alpha_curve = SubResource("CurveTexture_w8liw")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_bpdwx"]
+load_path = "res://.godot/imported/testPARTICLE.png-1d149aeb783ebce0326e8b5cbb5df229.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6ajva"]
+transparency = 1
+cull_mode = 2
+albedo_color = Color(0.239216, 1, 0, 1)
+albedo_texture = SubResource("CompressedTexture2D_bpdwx")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_ff6l2"]
+material = SubResource("StandardMaterial3D_6ajva")
+size = Vector2(0.1, 0.1)
+
+[node name="Zondbe" type="CharacterBody3D" groups=["Zondbe"]]
+script = ExtResource("1_gol8u")
+hp = 100
+attack_strength = 25
+>>>>>>> Stashed changes
 attack_distance = 10
 speed = 5.0
 
@@ -33,8 +85,14 @@ debug_color = Color(0.0606634, 0.649857, 0, 0.42)
 script = ExtResource("2_yh48i")
 
 [node name="HitRaycast" type="RayCast3D" parent="."]
+<<<<<<< Updated upstream
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.330004, -0.245505)
 target_position = Vector3(0, 0, 2)
+=======
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.945642, -0.245505)
+target_position = Vector3(0, 0, 2)
+collision_mask = 8912897
+>>>>>>> Stashed changes
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 target_desired_distance = 2.0
@@ -44,6 +102,20 @@ height = 0.01
 avoidance_priority = 0.5
 
 [node name="Timer" type="Timer" parent="."]
+<<<<<<< Updated upstream
+=======
+one_shot = true
+
+[node name="Particles" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0843123, 0.779237, -1.07058)
+emitting = false
+amount = 16
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.5
+process_material = SubResource("ParticleProcessMaterial_xkvyq")
+draw_pass_1 = SubResource("QuadMesh_ff6l2")
+>>>>>>> Stashed changes
 
 [connection signal="is_hit" from="BodyCollision" to="." method="_on_body_collision_is_hit"]
 [connection signal="is_hit" from="HeadCollision" to="." method="_on_head_collision_is_hit"]

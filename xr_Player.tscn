@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://d2ya0ksvu2aqp"]
+[gd_scene load_steps=8 format=3 uid="uid://d2ya0ksvu2aqp"]
 
+[ext_resource type="Script" uid="uid://bkmqt277yijmx" path="res://script_player_main.gd" id="1_8wnqr"]
 [ext_resource type="PackedScene" uid="uid://b4kad2kuba1yn" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_hand_low.tscn" id="1_m4ir4"]
 [ext_resource type="PackedScene" uid="uid://l2n30mpbkdyw" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/right_hand_low.tscn" id="2_6j46q"]
 [ext_resource type="PackedScene" uid="uid://bl2nuu3qhlb5k" path="res://addons/godot-xr-tools/functions/movement_direct.tscn" id="2_jt74p"]
@@ -8,6 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://b6bk2pj8vbj28" path="res://addons/godot-xr-tools/functions/movement_turn.tscn" id="4_4kbcs"]
 
 [node name="XROrigin3D" type="XROrigin3D"]
+script = ExtResource("1_8wnqr")
+max_hp = 100
 
 [node name="XRCamera3D" type="XRCamera3D" parent="."]
 
@@ -37,5 +40,7 @@ turn_mode = 2
 pickup_axis_action = "grip_click"
 grab_distance = 5.0
 
-[node name="PlayerBody" parent="." instance=ExtResource("3_jt74p")]
+[node name="PlayerBody" parent="." groups=["Nyashka", "Player"] instance=ExtResource("3_jt74p")]
 player_head_height = 0.075
+
+[connection signal="is_hit" from="PlayerBody" to="." method="hit"]

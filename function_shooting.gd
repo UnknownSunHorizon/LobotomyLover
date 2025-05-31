@@ -21,7 +21,11 @@ func shoot():
 			_test_raycast(result.get("position"))
 			if result.get("name") == "Zondbe":
 				var bodypart = get_collider().shape_owner_get_owner(get_collider_shape())
+<<<<<<< Updated upstream
 				bodypart._hit()
+=======
+				bodypart.hit(damage)
+>>>>>>> Stashed changes
 				
 		get_child(1).visible = true
 		get_child(1).get_child(0).start(light_flash_time)
