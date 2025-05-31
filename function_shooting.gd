@@ -18,13 +18,8 @@ func shoot():
 	if !fired_already:
 		var result = get_collider()
 		if result:
-			'''
 			_test_raycast(result.get("position"))
 			if result.get("name") == "Zondbe":
-				var bodypart = get_collider().shape_owner_get_owner(get_collider_shape())
-				bodypart._hit()
-			#'''
-			if result.is_in_group("Zondbe"):
 				var bodypart = get_collider().shape_owner_get_owner(get_collider_shape())
 				bodypart._hit()
 				

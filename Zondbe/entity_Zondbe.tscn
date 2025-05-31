@@ -1,0 +1,52 @@
+[gd_scene load_steps=6 format=3 uid="uid://banq2t0iaksth"]
+
+[ext_resource type="Script" uid="uid://bs1b44ey37v3t" path="res://Zondbe/script_zondbe_main.gd" id="1_gol8u"]
+[ext_resource type="PackedScene" uid="uid://b7b1bq65sviqi" path="res://GG Test Model10 GLTF.gltf" id="2_aw2qu"]
+[ext_resource type="Script" uid="uid://cnq63b5u8ritb" path="res://Zondbe/script_zondbe_bodyparts.gd" id="2_yh48i"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gol8u"]
+size = Vector3(0.5, 1, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yh48i"]
+size = Vector3(0.52, 0.6, 0.55)
+
+[node name="Zondbe" type="CharacterBody3D" groups=["Zondbe"]]
+script = ExtResource("1_gol8u")
+hp = 100
+head_damage = 50.0
+body_damage = 40.0
+attack_distance = 10
+speed = 5.0
+
+[node name="GG Test Model10 GLTF" parent="." instance=ExtResource("2_aw2qu")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="BodyCollision" type="CollisionShape3D" parent="." groups=["Zondbe_Parts"]]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.414016, 0.0622746)
+shape = SubResource("BoxShape3D_gol8u")
+script = ExtResource("2_yh48i")
+
+[node name="HeadCollision" type="CollisionShape3D" parent="." groups=["Zondbe_Parts"]]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.033073, 1.22906, 0.101118)
+shape = SubResource("BoxShape3D_yh48i")
+debug_color = Color(0.0606634, 0.649857, 0, 0.42)
+script = ExtResource("2_yh48i")
+
+[node name="HitRaycast" type="RayCast3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.330004, -0.245505)
+target_position = Vector3(0, 0, 2)
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+target_desired_distance = 2.0
+simplify_path = true
+avoidance_enabled = true
+height = 0.01
+avoidance_priority = 0.5
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="is_hit" from="BodyCollision" to="." method="_on_body_collision_is_hit"]
+[connection signal="is_hit" from="HeadCollision" to="." method="_on_head_collision_is_hit"]
+[connection signal="target_reached" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_target_reached"]
+[connection signal="velocity_computed" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_velocity_computed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 XRToolsUserSettings="*res://addons/godot-xr-tools/user_settings/user_settings.gd"
 XRToolsRumbleManager="*res://addons/godot-xr-tools/rumble/rumble_manager.gd"
+XrSimulator="*res://addons/xr-simulator/XRSimulator.tscn"
 
 [editor_plugins]
 
@@ -27,6 +28,18 @@ enabled=PackedStringArray("res://addons/godot-xr-tools/plugin.cfg")
 [global_group]
 
 Zondbe=""
+Nyashka=""
+
+[layer_names]
+
+avoidance/layer_1="Nyashkis"
+avoidance/layer_2="Zondbes"
+avoidance/layer_3="Objects"
+
+[physics]
+
+3d/run_on_separate_thread=true
+common/physics_interpolation=true
 
 [rendering]
 
@@ -37,4 +50,9 @@ renderer/rendering_method="mobile"
 openxr/enabled=true
 openxr/default_action_map="uid://tx8ot4fwb46x"
 openxr/reference_space=2
+openxr/startup_alert=false
+openxr/extensions/hand_tracking=true
 shaders/enabled=true
+openxr/run_on_separate_thread=false
+openxr/physics_interpolation=false
+openxr/physics_ticks_per_second=20

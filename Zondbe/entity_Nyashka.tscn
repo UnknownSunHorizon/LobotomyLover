@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://cg5s7mv8sqtyj"]
+
+[ext_resource type="Script" uid="uid://cjsomx1sxw7fe" path="res://Zondbe/script_nyashka.gd" id="1_lfa8b"]
+[ext_resource type="Script" uid="uid://cnq63b5u8ritb" path="res://Zondbe/script_zondbe_bodyparts.gd" id="3_81am5"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_lfa8b"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gol8u"]
+size = Vector3(0.5, 1, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yh48i"]
+size = Vector3(0.52, 0.6, 0.55)
+
+[node name="Nyashka" type="CharacterBody3D" groups=["Nyashka"]]
+script = ExtResource("1_lfa8b")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.59, 0, 0, 0, 0.59, 0, 0, 0, 0.59, 0.086993, 0.531017, 0)
+mesh = SubResource("CylinderMesh_lfa8b")
+
+[node name="BodyCollision" type="CollisionShape3D" parent="." groups=["Zondbe_Parts"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.414016, 0.0622746)
+shape = SubResource("BoxShape3D_gol8u")
+script = ExtResource("3_81am5")
+
+[node name="HeadCollision" type="CollisionShape3D" parent="." groups=["Zondbe_Parts"]]
+transform = Transform3D(0.997789, 0, 0.0664655, 0, 1, 0, -0.0664655, 0, 0.997789, 0.033073, 1.22906, 0.101118)
+shape = SubResource("BoxShape3D_yh48i")
+debug_color = Color(0.0606634, 0.649857, 0, 0.42)
+script = ExtResource("3_81am5")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_height_offset = 0.25
+simplify_path = true
+avoidance_enabled = true
+avoidance_priority = 0.5
+
+[connection signal="is_hit" from="BodyCollision" to="." method="_on_body_collision_is_hit"]
+[connection signal="is_hit" from="HeadCollision" to="." method="_on_head_collision_is_hit"]
+[connection signal="target_reached" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_target_reached"]
+[connection signal="velocity_computed" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_velocity_computed"]
