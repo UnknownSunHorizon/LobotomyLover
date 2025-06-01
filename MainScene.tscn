@@ -4,8 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://d2ya0ksvu2aqp" path="res://xr_Player.tscn" id="2_x4av3"]
 [ext_resource type="PackedScene" uid="uid://d0q8uq6pqop7f" path="res://object_Pistol.tscn" id="3_rpqi1"]
 [ext_resource type="PackedScene" uid="uid://be8l8bmd88wjq" path="res://RPD_ParkingLot_1.0_Y4hS6zh/RPD_ParkingLot_1.0.blend" id="4_a814b"]
-[ext_resource type="PackedScene" uid="uid://cg5s7mv8sqtyj" path="res://Zondbe/entity_Nyashka.tscn" id="5_a814b"]
-[ext_resource type="PackedScene" uid="uid://banq2t0iaksth" path="res://Zondbe/entity_Zondbe.tscn" id="11_p5x2j"]
+[ext_resource type="PackedScene" path="res://Zondbe/entity_Nyashka.tscn" id="5_a814b"]
+[ext_resource type="PackedScene" path="res://Zondbe/entity_Zondbe.tscn" id="11_p5x2j"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1305s"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -38,11 +38,7 @@ size = Vector2(20, 20)
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_rf2cd"]
 
-<<<<<<< Updated upstream
-[node name="Node3D" type="Node3D"]
-=======
 [node name="Stage" type="Node3D"]
->>>>>>> Stashed changes
 script = ExtResource("1_3mqji")
 
 [node name="XROrigin3D" parent="." instance=ExtResource("2_x4av3")]
@@ -156,12 +152,6 @@ transform = Transform3D(0.0155937, -0.936774, -0.349588, 0.845928, 0.19876, -0.4
 [node name="Pistol2" parent="." instance=ExtResource("3_rpqi1")]
 transform = Transform3D(-3.46176e-08, -0.791959, 0.610574, 1, -4.37114e-08, 0, 2.6689e-08, 0.610574, 0.791959, 1.22236, 1.37378, -1.75881)
 
-<<<<<<< Updated upstream
-[node name="Nyashka" parent="." instance=ExtResource("5_a814b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.09118, 0.00997162, -2.60234)
-
-=======
->>>>>>> Stashed changes
 [node name="Nyashka2" parent="." instance=ExtResource("5_a814b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.79005, 0.00997162, -14.0277)
 
@@ -169,16 +159,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.79005, 0.00997162, -14.0277
 transform = Transform3D(0.645191, 0, -0.764021, 0, 1, 0, 0.764021, 0, 0.645191, 0.142042, 0.00676714, -11.1827)
 
 [node name="Zondbe2" parent="." instance=ExtResource("11_p5x2j")]
-<<<<<<< Updated upstream
-process_mode = 4
-transform = Transform3D(0.492333, 0, 0.870407, 0, 1, 0, -0.870407, 0, 0.492333, 13.1126, 0.00676714, -7.99262)
-
-[node name="Zondbe3" parent="." instance=ExtResource("11_p5x2j")]
-process_mode = 4
-transform = Transform3D(0.0497563, 0, -0.998761, 0, 1, 0, 0.998761, 0, 0.0497563, 21.1091, -0.768025, -20.2303)
-=======
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.7074, 0.00676714, -9.11073)
 
 [node name="Nyashka" parent="." instance=ExtResource("5_a814b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.51565, 0.058983, -10.1067)
->>>>>>> Stashed changes

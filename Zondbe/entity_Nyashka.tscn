@@ -1,17 +1,14 @@
-<<<<<<< Updated upstream
-[gd_scene load_steps=6 format=3 uid="uid://cg5s7mv8sqtyj"]
-
-[ext_resource type="Script" uid="uid://cjsomx1sxw7fe" path="res://Zondbe/script_nyashka.gd" id="1_lfa8b"]
-[ext_resource type="Script" uid="uid://cnq63b5u8ritb" path="res://Zondbe/script_zondbe_bodyparts.gd" id="3_81am5"]
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_lfa8b"]
-
-=======
-[gd_scene load_steps=14 format=3 uid="uid://cg5s7mv8sqtyj"]
+[gd_scene load_steps=23 format=3 uid="uid://j2txr7drolng"]
 
 [ext_resource type="Script" uid="uid://bs1b44ey37v3t" path="res://Zondbe/script_zondbe_main.gd" id="1_lfa8b"]
 [ext_resource type="Script" uid="uid://cnq63b5u8ritb" path="res://Zondbe/script_zondbe_bodyparts.gd" id="3_81am5"]
 [ext_resource type="Texture2D" uid="uid://kjnvodh12317" path="res://testPARTICLE.png" id="3_m8pwn"]
+[ext_resource type="AudioStream" uid="uid://bymtrl5gqimiq" path="res://Zondbe/NyashkaAttack1.wav" id="4_6wmre"]
+[ext_resource type="AudioStream" uid="uid://d13l4dr8tefqd" path="res://Zondbe/NyashkaAttack2.wav" id="5_35nxu"]
+[ext_resource type="AudioStream" uid="uid://chi2rckhoik0w" path="res://Zondbe/NyashkaAttack3.wav" id="6_pu8cd"]
+[ext_resource type="AudioStream" uid="uid://c2lveldd6jgaa" path="res://Zondbe/NyashkaAttack4.wav" id="7_n2f67"]
+[ext_resource type="AudioStream" uid="uid://dmhtse6lql4st" path="res://Zondbe/NyashkaDeath.wav" id="8_pu8cd"]
+[ext_resource type="AudioStream" uid="uid://bi0aq2ssl6xio" path="res://Zondbe/NyashkaTaskCompleted.wav" id="9_n2f67"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_lfa8b"]
 
@@ -20,17 +17,12 @@ top_radius = 0.0
 bottom_radius = 0.2
 height = 0.25
 
->>>>>>> Stashed changes
 [sub_resource type="BoxShape3D" id="BoxShape3D_gol8u"]
 size = Vector3(0.5, 1, 0.5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yh48i"]
 size = Vector3(0.52, 0.6, 0.55)
 
-<<<<<<< Updated upstream
-[node name="Nyashka" type="CharacterBody3D" groups=["Nyashka"]]
-script = ExtResource("1_lfa8b")
-=======
 [sub_resource type="Curve" id="Curve_3h2wk"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.132075, 1), -0.173281, 0.0, 0, 1, Vector2(0.760377, 1), 0.0, -0.336858, 1, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 4
@@ -64,6 +56,24 @@ particles_anim_loop = false
 material = SubResource("StandardMaterial3D_81am5")
 size = Vector2(0.1, 0.1)
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_4xin4"]
+random_pitch = 1.2
+streams_count = 4
+stream_0/stream = ExtResource("4_6wmre")
+stream_1/stream = ExtResource("5_35nxu")
+stream_2/stream = ExtResource("6_pu8cd")
+stream_3/stream = ExtResource("7_n2f67")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ldm6q"]
+random_pitch = 1.2
+streams_count = 1
+stream_0/stream = ExtResource("8_pu8cd")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_jho3t"]
+random_pitch = 1.2
+streams_count = 1
+stream_0/stream = ExtResource("9_n2f67")
+
 [node name="Nyashka" type="CharacterBody3D" groups=["Nyashka"]]
 script = ExtResource("1_lfa8b")
 hp = 150
@@ -71,16 +81,11 @@ head_multiplier = 2.0
 attack_strength = 25
 attack_distance = 10
 speed = 5.0
->>>>>>> Stashed changes
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.59, 0, 0, 0, 0.59, 0, 0, 0, 0.59, 0.086993, 0.531017, 0)
 mesh = SubResource("CylinderMesh_lfa8b")
 
-<<<<<<< Updated upstream
-[node name="BodyCollision" type="CollisionShape3D" parent="." groups=["Zondbe_Parts"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.414016, 0.0622746)
-=======
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.59, 0, 0, 0, 0.59, 0, 0, 0, 0.59, 0.234691, 1.193, 0)
 mesh = SubResource("CylinderMesh_m8pwn")
@@ -91,7 +96,6 @@ mesh = SubResource("CylinderMesh_m8pwn")
 
 [node name="BodyCollision" type="CollisionShape3D" parent="." groups=["Zondbe_Parts"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00336695, 0.414016, 0.0599696)
->>>>>>> Stashed changes
 shape = SubResource("BoxShape3D_gol8u")
 script = ExtResource("3_81am5")
 
@@ -107,8 +111,6 @@ simplify_path = true
 avoidance_enabled = true
 avoidance_priority = 0.5
 
-<<<<<<< Updated upstream
-=======
 [node name="HitRaycast" type="RayCast3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.819921, -0.245505)
 target_position = Vector3(0, 0, 2)
@@ -126,12 +128,15 @@ explosiveness = 0.5
 process_material = SubResource("ParticleProcessMaterial_6wmre")
 draw_pass_1 = SubResource("QuadMesh_pu8cd")
 
->>>>>>> Stashed changes
-[connection signal="is_hit" from="BodyCollision" to="." method="_on_body_collision_is_hit"]
-[connection signal="is_hit" from="HeadCollision" to="." method="_on_head_collision_is_hit"]
+[node name="AttackSound" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_4xin4")
+
+[node name="DeathSound" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_ldm6q")
+
+[node name="TaskCompletedSound" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_jho3t")
+
 [connection signal="target_reached" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_target_reached"]
 [connection signal="velocity_computed" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_velocity_computed"]
-<<<<<<< Updated upstream
-=======
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
->>>>>>> Stashed changes

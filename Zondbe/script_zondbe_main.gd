@@ -53,7 +53,6 @@ func _on_timer_timeout() -> void:
 	attacking = false
 	
 func do_nyashify():
-<<<<<<< Updated upstream
 	print("я няшка")
 
 ###LOGIC
