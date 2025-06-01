@@ -1,5 +1,9 @@
 extends XROrigin3D
 
+@export var DeathSound: AudioStreamPlayer3D
+@export var HitSound: AudioStreamPlayer3D
+@export var TaskCompleteSound: AudioStreamPlayer3D
+
 @export var max_hp: int
 var hp: int
 
@@ -12,8 +16,14 @@ func _ready() -> void:
 func hit(damage):
 	hp -= damage
 	print(hp)
-	_is_dead()
+	if _is_dead():
+		DeathSound.play()
+	else:
+		HitSound.play()
 	
-func _is_dead() -> void:
+func _is_dead() -> bool:
 	if hp <= 0:
 		imdead.emit(self)
+		return true
+	else:
+		return false

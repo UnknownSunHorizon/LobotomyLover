@@ -1,11 +1,8 @@
 extends Node3D
 
 @onready var player = $XROrigin3D
-<<<<<<< Updated upstream
-=======
 var nyashka_node = preload("res://Zondbe/entity_Nyashka.tscn")
 
->>>>>>> Stashed changes
 
 var xr_interface: XRInterface
 
@@ -14,9 +11,6 @@ func _ready() -> void:
 	if xr_interface and xr_interface.is_initialized():
 		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
 		get_viewport().use_xr = true
-<<<<<<< Updated upstream
-	#get_tree().call_group("Zondbe","update_target_location",player.global_transform.origin)
-=======
 	var nyashkas = get_tree().get_nodes_in_group("Nyashka")
 	for nyashka in nyashkas:
 		if !nyashka.is_in_group("Player"):
@@ -40,4 +34,3 @@ func someone_died(who):
 		if who.is_in_group("Player"):
 			print("GAME_OVER")
 	who.queue_free()
->>>>>>> Stashed changes

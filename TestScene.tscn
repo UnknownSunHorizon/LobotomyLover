@@ -1,8 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://ddll1bdsvws1l"]
+[gd_scene load_steps=11 format=3 uid="uid://qyoqlmmp8a8b"]
 
 [ext_resource type="Script" uid="uid://csjg8rrvv7r0y" path="res://RayCastTest.gd" id="3_5rlty"]
 [ext_resource type="Material" uid="uid://d354ip8uwbbma" path="res://MaterialTest/TestMaterial.tres" id="3_wicfy"]
-[ext_resource type="PackedScene" path="res://Zondbe/entity_Zondbe.tscn" id="11_2vj68"]
+[ext_resource type="PackedScene" uid="uid://banq2t0iaksth" path="res://Zondbe/entity_Zondbe.tscn" id="11_2vj68"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_5rlty"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)

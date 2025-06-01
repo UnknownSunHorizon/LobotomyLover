@@ -1,14 +1,15 @@
-[gd_scene load_steps=23 format=3 uid="uid://j2txr7drolng"]
+[gd_scene load_steps=25 format=3 uid="uid://cg5s7mv8sqtyj"]
 
 [ext_resource type="Script" uid="uid://bs1b44ey37v3t" path="res://Zondbe/script_zondbe_main.gd" id="1_lfa8b"]
 [ext_resource type="Script" uid="uid://cnq63b5u8ritb" path="res://Zondbe/script_zondbe_bodyparts.gd" id="3_81am5"]
 [ext_resource type="Texture2D" uid="uid://kjnvodh12317" path="res://testPARTICLE.png" id="3_m8pwn"]
-[ext_resource type="AudioStream" uid="uid://bymtrl5gqimiq" path="res://Zondbe/NyashkaAttack1.wav" id="4_6wmre"]
-[ext_resource type="AudioStream" uid="uid://d13l4dr8tefqd" path="res://Zondbe/NyashkaAttack2.wav" id="5_35nxu"]
-[ext_resource type="AudioStream" uid="uid://chi2rckhoik0w" path="res://Zondbe/NyashkaAttack3.wav" id="6_pu8cd"]
-[ext_resource type="AudioStream" uid="uid://c2lveldd6jgaa" path="res://Zondbe/NyashkaAttack4.wav" id="7_n2f67"]
-[ext_resource type="AudioStream" uid="uid://dmhtse6lql4st" path="res://Zondbe/NyashkaDeath.wav" id="8_pu8cd"]
-[ext_resource type="AudioStream" uid="uid://bi0aq2ssl6xio" path="res://Zondbe/NyashkaTaskCompleted.wav" id="9_n2f67"]
+[ext_resource type="AudioStream" uid="uid://tvdxexaxga" path="res://Zondbe/NyashkaAttack1.wav" id="4_6wmre"]
+[ext_resource type="AudioStream" uid="uid://dbg60ivgq0j15" path="res://Zondbe/NyashkaAttack2.wav" id="5_35nxu"]
+[ext_resource type="AudioStream" uid="uid://drlhrht5c312e" path="res://Zondbe/NyashkaAttack3.wav" id="6_pu8cd"]
+[ext_resource type="AudioStream" uid="uid://bm0ed1py4yeks" path="res://Zondbe/NyashkaAttack4.wav" id="7_n2f67"]
+[ext_resource type="AudioStream" uid="uid://brtjhljsqoofw" path="res://Zondbe/NyashkaDeath.wav" id="8_pu8cd"]
+[ext_resource type="AudioStream" uid="uid://dfuosr1g5o3s8" path="res://Zondbe/NyashkaHit.wav" id="9_4xin4"]
+[ext_resource type="AudioStream" uid="uid://boyxsiioao5r4" path="res://Zondbe/NyashkaTaskCompleted.wav" id="9_n2f67"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_lfa8b"]
 
@@ -69,6 +70,11 @@ random_pitch = 1.2
 streams_count = 1
 stream_0/stream = ExtResource("8_pu8cd")
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_8nb7i"]
+random_pitch = 1.2
+streams_count = 1
+stream_0/stream = ExtResource("9_4xin4")
+
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_jho3t"]
 random_pitch = 1.2
 streams_count = 1
@@ -76,7 +82,7 @@ stream_0/stream = ExtResource("9_n2f67")
 
 [node name="Nyashka" type="CharacterBody3D" groups=["Nyashka"]]
 script = ExtResource("1_lfa8b")
-hp = 150
+maxhp = 75
 head_multiplier = 2.0
 attack_strength = 25
 attack_distance = 10
@@ -112,7 +118,7 @@ avoidance_enabled = true
 avoidance_priority = 0.5
 
 [node name="HitRaycast" type="RayCast3D" parent="."]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.819921, -0.245505)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.728619, -0.245505)
 target_position = Vector3(0, 0, 2)
 
 [node name="Timer" type="Timer" parent="."]
@@ -134,9 +140,14 @@ stream = SubResource("AudioStreamRandomizer_4xin4")
 [node name="DeathSound" type="AudioStreamPlayer3D" parent="."]
 stream = SubResource("AudioStreamRandomizer_ldm6q")
 
+[node name="HitSound" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_8nb7i")
+
 [node name="TaskCompletedSound" type="AudioStreamPlayer3D" parent="."]
 stream = SubResource("AudioStreamRandomizer_jho3t")
 
+[connection signal="is_hit" from="BodyCollision" to="." method="_on_body_collision_is_hit"]
+[connection signal="is_hit" from="HeadCollision" to="." method="_on_head_collision_is_hit"]
 [connection signal="target_reached" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_target_reached"]
 [connection signal="velocity_computed" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_velocity_computed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

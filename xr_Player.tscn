@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://d2ya0ksvu2aqp"]
+[gd_scene load_steps=14 format=3 uid="uid://d2ya0ksvu2aqp"]
 
 [ext_resource type="Script" uid="uid://bkmqt277yijmx" path="res://script_player_main.gd" id="1_8wnqr"]
 [ext_resource type="PackedScene" uid="uid://b4kad2kuba1yn" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_hand_low.tscn" id="1_m4ir4"]
@@ -7,12 +7,61 @@
 [ext_resource type="PackedScene" uid="uid://b4ysuy43poobf" path="res://addons/godot-xr-tools/functions/function_pickup.tscn" id="3_4kbcs"]
 [ext_resource type="PackedScene" uid="uid://diyu06cw06syv" path="res://addons/godot-xr-tools/player/player_body.tscn" id="3_jt74p"]
 [ext_resource type="PackedScene" uid="uid://b6bk2pj8vbj28" path="res://addons/godot-xr-tools/functions/movement_turn.tscn" id="4_4kbcs"]
+[ext_resource type="AudioStream" uid="uid://brtjhljsqoofw" path="res://Zondbe/NyashkaDeath.wav" id="12_5resb"]
+[ext_resource type="AudioStream" uid="uid://dfuosr1g5o3s8" path="res://Zondbe/NyashkaHit.wav" id="13_l5kk1"]
+[ext_resource type="AudioStream" uid="uid://boyxsiioao5r4" path="res://Zondbe/NyashkaTaskCompleted.wav" id="14_lykta"]
 
-[node name="XROrigin3D" type="XROrigin3D"]
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_e8tdd"]
+random_pitch = 1.2
+streams_count = 1
+stream_0/stream = ExtResource("12_5resb")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_m86ms"]
+random_pitch = 1.2
+streams_count = 1
+stream_0/stream = ExtResource("13_l5kk1")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_igup3"]
+random_pitch = 1.2
+random_volume_offset_db = 3.09
+streams_count = 1
+stream_0/stream = ExtResource("14_lykta")
+
+[node name="XROrigin3D" type="XROrigin3D" node_paths=PackedStringArray("DeathSound", "HitSound", "TaskCompleteSound")]
 script = ExtResource("1_8wnqr")
+DeathSound = NodePath("XRCamera3D/DeathSound")
+HitSound = NodePath("XRCamera3D/HitSound")
+TaskCompleteSound = NodePath("XRCamera3D/TaskCompletedSound")
 max_hp = 100
 
 [node name="XRCamera3D" type="XRCamera3D" parent="."]
+
+[node name="DeathSound" type="AudioStreamPlayer3D" parent="XRCamera3D"]
+stream = SubResource("AudioStreamRandomizer_e8tdd")
+attenuation_model = 3
+volume_db = 12.0
+unit_size = 100.0
+max_db = 6.0
+pitch_scale = 0.5
+panning_strength = 0.0
+
+[node name="HitSound" type="AudioStreamPlayer3D" parent="XRCamera3D"]
+stream = SubResource("AudioStreamRandomizer_m86ms")
+attenuation_model = 3
+volume_db = 12.0
+unit_size = 100.0
+max_db = 6.0
+pitch_scale = 0.5
+panning_strength = 0.0
+
+[node name="TaskCompletedSound" type="AudioStreamPlayer3D" parent="XRCamera3D"]
+stream = SubResource("AudioStreamRandomizer_igup3")
+attenuation_model = 3
+volume_db = 12.0
+unit_size = 100.0
+max_db = 6.0
+pitch_scale = 0.5
+panning_strength = 0.0
 
 [node name="Controller_Left" type="XRController3D" parent="."]
 tracker = &"left_hand"
