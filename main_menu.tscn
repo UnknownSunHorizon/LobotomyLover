@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://m5axwrhmy7et"]
+
+[ext_resource type="Texture2D" uid="uid://5d6vclb2cwi" path="res://ga_BwGk74aU.jpg" id="1_06t4h"]
+[ext_resource type="Script" uid="uid://u3cn5x4ptid3" path="res://scene_load_btn.gd" id="1_7vrkn"]
+
+[node name="MainMenu" type="Node2D"]
+
+[node name="Button" type="Button" parent="."]
+offset_left = 119.0
+offset_top = 138.0
+offset_right = 250.0
+offset_bottom = 185.0
+text = "Play"
+script = ExtResource("1_7vrkn")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="GaBwGk74aU" type="Sprite2D" parent="."]
+position = Vector2(557, 349)
+scale = Vector2(0.554348, 0.554348)
+texture = ExtResource("1_06t4h")

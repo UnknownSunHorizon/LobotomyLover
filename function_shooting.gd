@@ -18,18 +18,14 @@ func shoot():
 	if !fired_already:
 		var result = get_collider()
 		if result:
-			'''
 			_test_raycast(result.get("position"))
-			if result.get("name") == "Zondbe":
-				var bodypart = get_collider().shape_owner_get_owner(get_collider_shape())
-				bodypart._hit()
-			#'''
 			if result.is_in_group("Zondbe"):
 				var bodypart = get_collider().shape_owner_get_owner(get_collider_shape())
-				bodypart._hit()
+				bodypart.hit(damage)
 				
 		get_child(1).visible = true
 		get_child(1).get_child(0).start(light_flash_time)
+		$ShootSound.play()
 		fired_already = true
 		get_child(0).start(time_between_shots)
 

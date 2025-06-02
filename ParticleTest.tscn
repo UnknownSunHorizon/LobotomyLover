@@ -1,0 +1,75 @@
+[gd_scene load_steps=8 format=3 uid="uid://ddvoau3e1gup2"]
+
+[ext_resource type="Material" uid="uid://cmuvnmj3pl4vy" path="res://MaterialTest/TestMaterial2.tres" id="1_phcqv"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_phcqv"]
+material = ExtResource("1_phcqv")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6vk8q"]
+inherit_velocity_ratio = 1.0
+direction = Vector3(0, 1, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 10.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_rm2c8"]
+material = ExtResource("1_phcqv")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_o0age"]
+direction = Vector3(5, 0, 5)
+gravity = Vector3(0, 0, 0)
+linear_accel_min = 6.92
+linear_accel_max = 8.02
+radial_accel_min = -5.0
+radial_accel_max = 15.0
+tangential_accel_min = -25.0
+tangential_accel_max = 50.0
+turbulence_enabled = true
+turbulence_noise_strength = 20.0
+turbulence_noise_scale = 1.0
+turbulence_noise_speed = Vector3(0.86, 2.045, 0)
+turbulence_noise_speed_random = 2.55
+turbulence_influence_min = 0.0
+turbulence_influence_max = 0.487
+
+[sub_resource type="SphereMesh" id="SphereMesh_4ibm4"]
+material = ExtResource("1_phcqv")
+radial_segments = 16
+rings = 8
+
+[sub_resource type="SphereMesh" id="SphereMesh_1pd2p"]
+material = ExtResource("1_phcqv")
+
+[node name="ParticleTest" type="Node3D"]
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_phcqv")
+skeleton = NodePath("../GPUParticles3D")
+
+[node name="GPUParticles3D2" type="GPUParticles3D" parent="."]
+amount = 24
+lifetime = 3.0
+interp_to_end = 1.0
+preprocess = 3.79
+speed_scale = 1.59
+randomness = 0.35
+trail_enabled = true
+process_material = SubResource("ParticleProcessMaterial_6vk8q")
+draw_pass_1 = SubResource("SphereMesh_rm2c8")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+visible = false
+amount = 24
+lifetime = 3.0
+interp_to_end = 1.0
+preprocess = 3.79
+speed_scale = 1.59
+randomness = 0.35
+trail_enabled = true
+trail_lifetime = 10.0
+process_material = SubResource("ParticleProcessMaterial_o0age")
+draw_pass_1 = SubResource("SphereMesh_4ibm4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.39169, 0, 0)
+visible = false
+mesh = SubResource("SphereMesh_1pd2p")

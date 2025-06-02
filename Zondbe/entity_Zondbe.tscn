@@ -1,0 +1,205 @@
+[gd_scene load_steps=35 format=3 uid="uid://banq2t0iaksth"]
+
+[ext_resource type="Script" uid="uid://bs1b44ey37v3t" path="res://Zondbe/script_zondbe_main.gd" id="1_gol8u"]
+[ext_resource type="PackedScene" uid="uid://b7b1bq65sviqi" path="res://GG Test Model10 GLTF.gltf" id="2_aw2qu"]
+[ext_resource type="PackedScene" uid="uid://dk0dhpr44dijy" path="res://Models/KayKit_Skeletons_1.0_FREE/characters/gltf/Skeleton_Minion.glb" id="2_ff6l2"]
+[ext_resource type="Script" uid="uid://cnq63b5u8ritb" path="res://Zondbe/script_zondbe_bodyparts.gd" id="2_yh48i"]
+[ext_resource type="AudioStream" uid="uid://cnd10owqnsqls" path="res://Zondbe/ZondbeAttack1.wav" id="4_6ajva"]
+[ext_resource type="AudioStream" uid="uid://6qpnprgtaup8" path="res://Zondbe/ZondbeAttack2.wav" id="5_ff6l2"]
+[ext_resource type="AudioStream" uid="uid://dsdrp4efj53pt" path="res://Zondbe/ZondbeAttack3.wav" id="6_r8w80"]
+[ext_resource type="AudioStream" uid="uid://lyqxbs66olf0" path="res://Zondbe/ZondbeDeath.wav" id="7_ys70x"]
+[ext_resource type="AudioStream" uid="uid://oqth5cai6tfr" path="res://Zondbe/ZondbeHit1.wav" id="8_2mpuj"]
+[ext_resource type="AudioStream" uid="uid://pqff2wjs0qk5" path="res://Zondbe/ZondbeHit2.wav" id="9_wjh4n"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ff6l2"]
+animation = &"2H_Melee_Attack_Slice"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2mpuj"]
+animation = &"Hit_B"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_r8w80"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ys70x"]
+animation = &"Walking_B"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2mpuj"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_csaqm"]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ff6l2"]
+xfade_time = 0.2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_r8w80"]
+xfade_time = 0.2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ys70x"]
+xfade_time = 0.2
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wjh4n"]
+xfade_time = 0.5
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_csaqm"]
+states/Attack/node = SubResource("AnimationNodeAnimation_ff6l2")
+states/Attack/position = Vector2(647.333, 32.6667)
+states/End/position = Vector2(911.333, 92.6667)
+states/Hit/node = SubResource("AnimationNodeAnimation_2mpuj")
+states/Hit/position = Vector2(312.667, 10.6667)
+states/Idle/node = SubResource("AnimationNodeAnimation_r8w80")
+states/Idle/position = Vector2(327.333, 101.333)
+states/Walking/node = SubResource("AnimationNodeAnimation_ys70x")
+states/Walking/position = Vector2(635.333, 166)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_2mpuj"), "Hit", "Idle", SubResource("AnimationNodeStateMachineTransition_csaqm"), "Walking", "Idle", SubResource("AnimationNodeStateMachineTransition_ff6l2"), "Idle", "Walking", SubResource("AnimationNodeStateMachineTransition_r8w80"), "Attack", "Walking", SubResource("AnimationNodeStateMachineTransition_ys70x"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_wjh4n")]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gol8u"]
+size = Vector3(0.5, 1, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yh48i"]
+size = Vector3(0.52, 0.6, 0.55)
+
+[sub_resource type="Curve" id="Curve_aw2qu"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.132075, 1), -0.173281, 0.0, 0, 1, Vector2(0.760377, 1), 0.0, -0.336858, 1, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_w8liw"]
+curve = SubResource("Curve_aw2qu")
+
+[sub_resource type="Curve" id="Curve_nplbr"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.132075, 1), -0.173281, 0.0, 0, 1, Vector2(0.760377, 1), 0.0, -0.336858, 1, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_bdqqy"]
+curve = SubResource("Curve_nplbr")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xkvyq"]
+inherit_velocity_ratio = 1.0
+spread = 180.0
+initial_velocity_min = 1.0
+initial_velocity_max = 3.0
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_bdqqy")
+alpha_curve = SubResource("CurveTexture_w8liw")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_bpdwx"]
+load_path = "res://.godot/imported/testPARTICLE.png-1d149aeb783ebce0326e8b5cbb5df229.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6ajva"]
+transparency = 1
+cull_mode = 2
+albedo_color = Color(0.239216, 1, 0, 1)
+albedo_texture = SubResource("CompressedTexture2D_bpdwx")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_ff6l2"]
+material = SubResource("StandardMaterial3D_6ajva")
+size = Vector2(0.1, 0.1)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_gu8ki"]
+random_pitch = 1.2
+streams_count = 3
+stream_0/stream = ExtResource("4_6ajva")
+stream_1/stream = ExtResource("5_ff6l2")
+stream_2/stream = ExtResource("6_r8w80")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_csaqm"]
+random_pitch = 1.2
+streams_count = 1
+stream_0/stream = ExtResource("7_ys70x")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_135i1"]
+random_pitch = 1.2
+streams_count = 2
+stream_0/stream = ExtResource("8_2mpuj")
+stream_1/stream = ExtResource("9_wjh4n")
+
+[node name="Zondbe" type="CharacterBody3D" node_paths=PackedStringArray("animation") groups=["Zondbe"]]
+script = ExtResource("1_gol8u")
+maxhp = 100
+head_multiplier = 1.5
+attack_strength = 25
+attack_distance = 2
+speed = 1.0
+lookout_distance = 10
+animation = NodePath("Model/AnimationPlayer")
+idle_state = "Idle"
+walking_state = "Walking"
+attack_state = "Attack"
+hit_state = "Hit"
+death_state = "Death"
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+root_node = NodePath("../Model")
+tree_root = SubResource("AnimationNodeStateMachine_csaqm")
+anim_player = NodePath("../Model/AnimationPlayer")
+
+[node name="Model" parent="." instance=ExtResource("2_ff6l2")]
+transform = Transform3D(-0.695, 0, 1.04942e-07, 0, 0.695, 0, -1.04942e-07, 0, -0.695, 0, 0, 0.092479)
+
+[node name="GG Test Model10 GLTF" parent="." instance=ExtResource("2_aw2qu")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+visible = false
+
+[node name="BodyCollision" type="CollisionShape3D" parent="." groups=["Zondbe_Parts"]]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.414016, 0.0622746)
+shape = SubResource("BoxShape3D_gol8u")
+script = ExtResource("2_yh48i")
+
+[node name="HeadCollision" type="CollisionShape3D" parent="." groups=["Zondbe_Parts"]]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.033073, 1.22906, 0.101118)
+shape = SubResource("BoxShape3D_yh48i")
+debug_color = Color(0.0606634, 0.649857, 0, 0.42)
+script = ExtResource("2_yh48i")
+
+[node name="HitRaycast" type="RayCast3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.607098, -0.245505)
+target_position = Vector3(0, 0, 5)
+collision_mask = 8912897
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+target_desired_distance = 2.0
+simplify_path = true
+avoidance_enabled = true
+height = 0.01
+avoidance_priority = 0.5
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Particles" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0843123, 0.779237, -1.07058)
+emitting = false
+amount = 16
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.5
+process_material = SubResource("ParticleProcessMaterial_xkvyq")
+draw_pass_1 = SubResource("QuadMesh_ff6l2")
+
+[node name="AttackSound" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_gu8ki")
+volume_db = -16.0
+
+[node name="DeathSound" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_csaqm")
+volume_db = -16.0
+
+[node name="HitSound" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_135i1")
+volume_db = -16.0
+
+[connection signal="animation_finished" from="AnimationTree" to="." method="_on_animation_tree_animation_finished"]
+[connection signal="animation_finished" from="Model/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="current_animation_changed" from="Model/AnimationPlayer" to="." method="_on_animation_player_current_animation_changed"]
+[connection signal="is_hit" from="BodyCollision" to="." method="_on_body_collision_is_hit"]
+[connection signal="is_hit" from="HeadCollision" to="." method="_on_head_collision_is_hit"]
+[connection signal="target_reached" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_target_reached"]
+[connection signal="velocity_computed" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_velocity_computed"]
+
+[editable path="Model"]
