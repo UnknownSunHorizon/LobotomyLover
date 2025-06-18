@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dojj5oe547kni"]
+
+[ext_resource type="Script" uid="uid://dh47nvwocnmt8" path="res://Script_VoiceTrigger.gd" id="1_xyath"]
+
+[node name="VoiceTrigger1" type="Area3D"]
+collision_mask = 524288
+script = ExtResource("1_xyath")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

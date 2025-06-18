@@ -50,13 +50,14 @@ func do_attack():
 	if !current_state(attack_state):
 		if raycast.is_colliding():
 			#print("ITS COLLIDING")
-			if raycast.get_collider().is_in_group(searching_for):
-				#print("ITS IN GROUP ", searching_for)
-				#print("ATTACKING = ", attacking)
-				raycast.get_collider().hit(attack_strength)
-				state.travel(attack_state)
-				$AttackSound.play()
-				$Particles.set_emitting(true)
+			if raycast.get_collider() != null:
+				if raycast.get_collider().is_in_group(searching_for):
+					#print("ITS IN GROUP ", searching_for)
+					#print("ATTACKING = ", attacking)
+					raycast.get_collider().hit(attack_strength)
+					state.travel(attack_state)
+					$AttackSound.play()
+					$Particles.set_emitting(true)
 
 func do_nyashify():
 	var new_nyashka = load("res://Zondbe/entity_Nyashka.tscn").instantiate()
@@ -68,7 +69,7 @@ func do_nyashify():
 func hit(damage):
 	hitted = true
 	hp -= damage
-	#print(self,hp)
+	print(self,hp, get_groups())
 	if current_state(idle_state):
 		state.travel("Hit")
 	if self.is_in_group("Faker"):
@@ -117,7 +118,7 @@ func _physics_process(delta: float) -> void:
 			
 			#print(self,closest_node)
 			#print(self,position.distance_to(closest_node.global_transform.origin))
-			print(self,closest_node)
+			#print(self,closest_node)
 			if position.distance_to(closest_node.global_transform.origin) <= lookout_distance:
 				state.travel(walking_state)
 				#print(self, state.get_current_node())
@@ -165,15 +166,15 @@ func current_state(to_check) -> bool:
 
 func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
 	
-	print(self, state.get_current_node())
+	#print(self, state.get_current_node())
 	if current_state(attack_state):
-		print(self, "   1")
+		#print(self, "   1")
 		if anim_name == attack_anim:
-			print(self, "   2")
+			#print(self, "   2")
 			state.travel(walking_state)
-			print(self, "   3")
+			#print(self, "   3")
 			if self.is_in_group("Nyashka"):
-				print(self, "   4")
+				#print(self, "   4")
 				var nodes = get_tree().get_nodes_in_group(searching_for)
 				for entity in nodes:
 					if entity.is_in_group("Faker"):

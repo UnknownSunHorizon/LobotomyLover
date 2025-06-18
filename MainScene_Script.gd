@@ -3,8 +3,12 @@ extends Node3D
 @onready var player = $XROrigin3D
 var nyashka_node = preload("res://Zondbe/entity_Nyashka.tscn")
 
-
 var xr_interface: XRInterface
+
+@export var Area: int
+@export var ZondbeTargetCount: int
+
+signal area_cleared
 
 func _ready() -> void:
 	xr_interface = XRServer.find_interface("OpenXR")
@@ -28,7 +32,25 @@ func someone_died(who):
 		new_nyashka.global_transform = who.global_transform
 		add_child(new_nyashka)
 		new_nyashka.imdead.connect(Callable(self, "someone_died"))
+		is_cleared()
 	else:
 		if who.is_in_group("Player"):
 			print("GAME_OVER")
 	who.queue_free()
+
+func is_cleared():
+	print("STARTING CHECKUP")
+	var spawners = get_tree().get_nodes_in_group("Spawner")
+	print(spawners)
+	var finished_spawning: bool = true
+	for spawner in spawners:
+		if spawner.finished == false:
+			finished_spawning = false
+	print(finished_spawning)
+	if finished_spawning:
+		print("NOW CHECKING ZOMBIES")
+		var area_zondbes = get_tree().get_node_count_in_group("Zondbe")
+		print(get_tree().get_nodes_in_group("Zondbe"))
+		if area_zondbes <= 1:
+			area_cleared.emit()
+			print("PERFECT AREA COMPLETE")

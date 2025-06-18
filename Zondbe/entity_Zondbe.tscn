@@ -121,7 +121,7 @@ stream_1/stream = ExtResource("9_wjh4n")
 
 [node name="Zondbe" type="CharacterBody3D" node_paths=PackedStringArray("animation") groups=["Zondbe"]]
 script = ExtResource("1_gol8u")
-maxhp = 100
+maxhp = 10
 head_multiplier = 1.5
 attack_strength = 25
 attack_distance = 2

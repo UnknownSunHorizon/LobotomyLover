@@ -1,0 +1,265 @@
+[gd_scene load_steps=12 format=3 uid="uid://tjxkxq0fe381"]
+
+[ext_resource type="Texture2D" uid="uid://cjjxrptf6tk1f" path="res://Avatar.png" id="1_igdxa"]
+[ext_resource type="Script" uid="uid://bjujpy1kwvtne" path="res://DialogueMechanics/Script_DialogueLine.gd" id="1_ww15o"]
+[ext_resource type="FontFile" uid="uid://c8nhhpr22oyti" path="res://DialogueMechanics/Fonts/PTSans-Italic.ttf" id="2_8ul7o"]
+[ext_resource type="FontFile" uid="uid://b44g18vk7cyy1" path="res://DialogueMechanics/Fonts/PTSans-Regular.ttf" id="3_ww15o"]
+
+[sub_resource type="Gradient" id="Gradient_dd6y5"]
+offsets = PackedFloat32Array(0, 0.454406, 1)
+colors = PackedColorArray(0.980392, 0.462745, 0.647059, 0.588235, 0.646592, 0.146775, 0.626861, 0.588235, 0.427451, 0.168627, 0.521569, 0.588235)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_62dj0"]
+noise_type = 5
+frequency = 0.02
+domain_warp_enabled = true
+domain_warp_type = 2
+domain_warp_amplitude = 100.0
+domain_warp_frequency = 0.015
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_5hfj0"]
+width = 256
+height = 64
+seamless = true
+color_ramp = SubResource("Gradient_dd6y5")
+noise = SubResource("FastNoiseLite_62dj0")
+
+[sub_resource type="Animation" id="Animation_dd6y5"]
+resource_name = "Line_End"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Base/Line:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.233333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Base/Line:outline_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.233333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.331327, 1.13107e-06, 0.203797, 1), Color(0.329412, 0, 0.203922, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ww15o"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Base:scale")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(-0.0666667, 0.133333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(0, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Base/Avatar:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Base/Line:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Base/Character:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Base/Line:outline_modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.331327, 1.13107e-06, 0.203797, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Base/Character:outline_modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.331327, 1.13107e-06, 0.203797, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_8ul7o"]
+resource_name = "UI_Appear"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Base:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 0.5),
+"transitions": PackedFloat32Array(0.435275, 0.287175),
+"update": 0,
+"values": [Vector3(0, 1, 1), Vector3(1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Base/Avatar:modulate")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.333333, 0.363333, 0.396667, 0.463333, 0.53, 0.596667, 0.624954, 0.655365),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.0943378), Color(1, 1, 1, 0), Color(1, 1, 1, 0.745966), Color(1, 1, 1, 0.0943378), Color(1, 1, 1, 1), Color(1, 1, 1, 0.0943378), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Base/Line:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.866667, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Base/Character:modulate")
+tracks/3/interp = 0
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.333333, 0.363333, 0.396667, 0.463333, 0.53, 0.596667, 0.624954, 0.654927, 0.655365),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.0943378), Color(1, 1, 1, 0), Color(1, 1, 1, 0.745966), Color(1, 1, 1, 0.0943378), Color(1, 1, 1, 1), Color(1, 1, 1, 0.0943378), Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Base/Line:outline_modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.866667, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.329412, 0, 0.203922, 0), Color(0.331327, 1.13107e-06, 0.203797, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Base/Character:outline_modulate")
+tracks/5/interp = 0
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.333333, 0.363333, 0.396667, 0.463333, 0.53, 0.596667, 0.624954, 0.6554),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(0.329412, 0, 0.203922, 0.0941176), Color(1, 1, 1, 0), Color(0.329412, 0, 0.203922, 0.745098), Color(0.321569, 0, 0.211765, 0.0941176), Color(0.329412, 0, 0.203922, 1), Color(0.329412, 0, 0.203922, 0.0941176), Color(0.331327, 1.13107e-06, 0.203797, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dd6y5"]
+_data = {
+&"Line_End": SubResource("Animation_dd6y5"),
+&"RESET": SubResource("Animation_ww15o"),
+&"UI_Appear": SubResource("Animation_8ul7o")
+}
+
+[node name="DialogueUi" type="Node3D"]
+script = ExtResource("1_ww15o")
+
+[node name="Voiceover" type="AudioStreamPlayer" parent="."]
+
+[node name="AdditionalSound" type="AudioStreamPlayer" parent="."]
+
+[node name="Base" type="Sprite3D" parent="."]
+no_depth_test = true
+render_priority = 1
+texture = SubResource("NoiseTexture2D_5hfj0")
+
+[node name="Avatar" type="Sprite3D" parent="Base"]
+transform = Transform3D(0.08, 0, 0, 0, 0.08, 0, 0, 0, 0.08, -0.94, -0.042, 0.021)
+double_sided = false
+no_depth_test = true
+render_priority = 3
+texture = ExtResource("1_igdxa")
+region_rect = Rect2(274, 146.666, 146.667, 88)
+
+[node name="Character" type="Label3D" parent="Base"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.94, 0.234, 0.021)
+no_depth_test = true
+render_priority = 3
+outline_render_priority = 2
+outline_modulate = Color(0.331327, 1.13107e-06, 0.203797, 1)
+text = "Нэкотяма"
+font = ExtResource("2_8ul7o")
+font_size = 16
+outline_size = 10
+autowrap_mode = 2
+
+[node name="Line" type="Label3D" parent="Base"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.676184, 0.162702, 0.0207804)
+no_depth_test = true
+render_priority = 3
+outline_render_priority = 2
+outline_modulate = Color(0.331327, 1.13107e-06, 0.203797, 1)
+text = "Что-то говорю..."
+font = ExtResource("3_ww15o")
+font_size = 24
+outline_size = 10
+horizontal_alignment = 0
+vertical_alignment = 0
+autowrap_mode = 2
+width = 380.0
+
+[node name="Animation" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_dd6y5")
+}
+
+[connection signal="finished" from="Voiceover" to="." method="voiceover_finished"]
+[connection signal="animation_finished" from="Animation" to="." method="ui_initialized"]
