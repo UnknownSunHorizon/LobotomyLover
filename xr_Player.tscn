@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://d2ya0ksvu2aqp"]
+[gd_scene load_steps=18 format=3 uid="uid://d2ya0ksvu2aqp"]
 
 [ext_resource type="Script" uid="uid://bkmqt277yijmx" path="res://script_player_main.gd" id="1_8wnqr"]
 [ext_resource type="PackedScene" uid="uid://b4kad2kuba1yn" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_hand_low.tscn" id="1_m4ir4"]
@@ -10,6 +10,8 @@
 [ext_resource type="AudioStream" uid="uid://w66as447sdwo" path="res://Zondbe/NyashkaDeath.wav" id="12_5resb"]
 [ext_resource type="AudioStream" uid="uid://b4vn258vstvol" path="res://Zondbe/NyashkaHit.wav" id="13_l5kk1"]
 [ext_resource type="AudioStream" uid="uid://de7va4oveo2cl" path="res://Zondbe/NyashkaTaskCompleted.wav" id="14_lykta"]
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_sf30f"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_e8tdd"]
 random_pitch = 1.2
@@ -27,7 +29,43 @@ random_volume_offset_db = 3.09
 streams_count = 1
 stream_0/stream = ExtResource("14_lykta")
 
-[node name="XROrigin3D" type="XROrigin3D" node_paths=PackedStringArray("DeathSound", "HitSound", "TaskCompleteSound")]
+[sub_resource type="Animation" id="Animation_w1i1x"]
+resource_name = "FullVisionLose"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("XRCamera3D:attributes:exposure_multiplier")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.18),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [1.0, 2.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_mr4o3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("XRCamera3D:attributes:exposure_multiplier")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1iaga"]
+_data = {
+&"FullVisionLose": SubResource("Animation_w1i1x"),
+&"RESET": SubResource("Animation_mr4o3")
+}
+
+[node name="XROrigin3D" type="XROrigin3D" node_paths=PackedStringArray("DeathSound", "HitSound", "TaskCompleteSound") groups=["Player"]]
 script = ExtResource("1_8wnqr")
 DeathSound = NodePath("XRCamera3D/DeathSound")
 HitSound = NodePath("XRCamera3D/HitSound")
@@ -35,6 +73,7 @@ TaskCompleteSound = NodePath("XRCamera3D/TaskCompletedSound")
 max_hp = 100
 
 [node name="XRCamera3D" type="XRCamera3D" parent="."]
+attributes = SubResource("CameraAttributesPractical_sf30f")
 
 [node name="DeathSound" type="AudioStreamPlayer3D" parent="XRCamera3D"]
 stream = SubResource("AudioStreamRandomizer_e8tdd")
@@ -92,4 +131,11 @@ grab_distance = 5.0
 [node name="PlayerBody" parent="." groups=["Nyashka", "Player"] instance=ExtResource("3_jt74p")]
 player_height_rate = 0.25
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_1iaga")
+}
+
 [connection signal="is_hit" from="PlayerBody" to="." method="hit"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

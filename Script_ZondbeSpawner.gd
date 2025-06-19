@@ -1,5 +1,6 @@
 extends Node3D
 
+@export var SpawnFakers: bool = false
 @export var SpawnTime: float
 @export var MaxCount: int = 1
 @export var EverythingEverywhereAllAtOnce: bool
@@ -13,8 +14,10 @@ var spawned: int = 0
 var finished: bool = false
 
 var zondbe_node = preload("res://Zondbe/entity_Zondbe.tscn")
+var faker_node = preload("res://Zondbe/entity_Faker.tscn")
 
 func _ready() -> void:
+	SpawningArea = get_parent()
 	SpawningArea.ready.connect(Callable(self, "area_is_ready"))
 
 func area_is_ready():
@@ -38,18 +41,20 @@ func start_spawning():
 
 func spawn():
 	if !finished:
-		print("SPAWNING")
+		#print("SPAWNING")
 		var new_zondbe = zondbe_node.instantiate()
+		if SpawnFakers:
+			new_zondbe = faker_node.instantiate()
 		new_zondbe.add_to_group("Area"+str(self.Area))
 		SpawningArea.add_child(new_zondbe)
-		print(get_tree().get_nodes_in_group("Zondbe"))
+		#print(get_tree().get_nodes_in_group("Zondbe"))
 		new_zondbe.global_position = self.global_position
 		new_zondbe.global_transform = self.global_transform
 		new_zondbe.imdead.connect(Callable(SpawningArea, "someone_died"))
-		print(new_zondbe)
+		#print(new_zondbe)
 		spawned += 1
-		print("ZONDBE SPAWNED: " + str(spawned))
-		print(get_tree().get_node_count_in_group("Zondbe"))
+		#print("ZONDBE SPAWNED: " + str(spawned))
+		#print(get_tree().get_node_count_in_group("Zondbe"))
 		if spawned == MaxCount:
 			end_spawning()
 			print(get_tree().get_nodes_in_group("Zondbe"))

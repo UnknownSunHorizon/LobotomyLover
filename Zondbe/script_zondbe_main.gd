@@ -28,7 +28,8 @@ var shield_broken: bool = false
 var searching_for: String
 
 var hitted: bool = false
-
+var cur_closest_node
+var kill_counted: bool = false
 signal imdead(who)
 
 ###ACTIONS
@@ -39,9 +40,15 @@ func _ready():
 	hp = maxhp
 	if is_in_group("Nyashka"):
 		searching_for = "Zondbe"
+		get_parent().all_zombies_killed.connect(Callable(self, "no_targets"))
 	else:
 		if is_in_group("Zondbe"):
 			searching_for = "Nyashka"
+
+func no_targets():
+	searching_for = "Player"
+	print("AREA CLEAR")
+	#process_mode = Node.PROCESS_MODE_DISABLED
 
 func do_attack():
 	state.travel(attack_state)
@@ -69,7 +76,7 @@ func do_nyashify():
 func hit(damage):
 	hitted = true
 	hp -= damage
-	print(self,hp, get_groups())
+	#print(self,hp, get_groups())
 	if current_state(idle_state):
 		state.travel("Hit")
 	if self.is_in_group("Faker"):
@@ -95,7 +102,9 @@ func _on_head_collision_is_hit(damage) -> void:
 
 func _is_dead() -> bool:
 	if hp <= 0:
-		imdead.emit(self)
+		if kill_counted == false:
+			imdead.emit(self)
+			kill_counted = true
 		return true
 	else:
 		return false
@@ -112,10 +121,10 @@ func _physics_process(delta: float) -> void:
 
 		if nodes.size() != 0:
 			var closest_node = nodes[0]
+			
 			for entity in nodes:
 				if position.distance_to(entity.global_transform.origin) < position.distance_to(closest_node.global_transform.origin):
 					closest_node = entity
-			
 			#print(self,closest_node)
 			#print(self,position.distance_to(closest_node.global_transform.origin))
 			#print(self,closest_node)
@@ -133,6 +142,7 @@ func _physics_process(delta: float) -> void:
 				nav_agent.set_velocity(new_velocity)
 			else:
 				state.travel(idle_state)
+			cur_closest_node = closest_node
 		else:
 			state.travel(idle_state)
 			#if !hitted:
@@ -143,7 +153,8 @@ func update_target_location(target_location):
 
 func _on_navigation_agent_3d_target_reached() -> void:
 	if !current_state(attack_state):
-		do_attack()
+		if searching_for != "Player":
+			do_attack()
 
 func _on_navigation_agent_3d_velocity_computed(safe_velocity: Vector3) -> void:
 	var prev_velocity = velocity

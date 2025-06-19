@@ -25,7 +25,6 @@ XrSimulator="*res://addons/xr-simulator/XRSimulator.tscn"
 
 window/size/viewport_width=1440
 window/size/viewport_height=900
-window/size/mode=3
 window/size/initial_position_type=3
 
 [editor_plugins]
@@ -38,6 +37,7 @@ Zondbe=""
 Nyashka=""
 Faker=""
 Spawner=""
+Player=""
 
 [layer_names]
 
