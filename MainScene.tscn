@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://bdb68utagx5lk"]
+[gd_scene load_steps=28 format=3 uid="uid://bdb68utagx5lk"]
 
 [ext_resource type="Script" uid="uid://uf145wadm3n2" path="res://MainScene_Script.gd" id="1_mctxq"]
 [ext_resource type="PackedScene" uid="uid://dojj5oe547kni" path="res://DialogueMechanics/VoiceTrigger.tscn" id="2_a814b"]
@@ -15,6 +15,7 @@
 [ext_resource type="Script" uid="uid://rj6joyei4t7m" path="res://Script_AreaOpenUp.gd" id="13_mctxq"]
 [ext_resource type="AudioStream" uid="uid://cqiuydsdb6hsh" path="res://Sounds/ShuttersOpen.ogg" id="14_nm5af"]
 [ext_resource type="PackedScene" uid="uid://dr1autn1pir65" path="res://TeleportTrigger.tscn" id="15_mctxq"]
+[ext_resource type="PackedScene" uid="uid://dtj5uly465r3g" path="res://level_location/level_location.tscn" id="16_nm5af"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_torvr"]
 size = Vector3(5.54468, 4.26965, 4.03479)
@@ -139,7 +140,7 @@ Line = Array[String](["Молодец! Теперь ты можешь идти �
 VoiceoverAudio = Array[AudioStream]([ExtResource("8_4mcbk")])
 
 [node name="XROrigin3D" parent="." node_paths=PackedStringArray("SpawningArea") instance=ExtResource("2_x4av3")]
-transform = Transform3D(0.702178, 0, -0.712002, 0, 1, 0, 0.712002, 0, 0.702178, 0, 0.641804, 0)
+transform = Transform3D(-0.994053, 0, -0.108901, 0, 1, 0, 0.108901, 0, -0.994053, -72.3996, 1.12575, -49.0166)
 SpawningArea = NodePath("..")
 
 [node name="VoiceTrigger1" parent="." node_paths=PackedStringArray("Dialogue") instance=ExtResource("2_a814b")]
@@ -296,5 +297,68 @@ other_side = NodePath("../TeleportTrigger2")
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 1, 5.90295, -0.0618873, -6.73272)
 PlayerNode = NodePath("../XROrigin3D")
 other_side = NodePath("../TeleportTrigger")
+
+[node name="TeleportTrigger3" parent="." node_paths=PackedStringArray("PlayerNode", "other_side") instance=ExtResource("15_mctxq")]
+transform = Transform3D(-8.74228e-08, 0, 1, 0, 2, 0, -2, 0, -4.37114e-08, -53.0187, 54.3181, -16.0827)
+PlayerNode = NodePath("../XROrigin3D")
+other_side = NodePath("../TeleportTrigger4")
+
+[node name="TeleportTrigger4" parent="." node_paths=PackedStringArray("PlayerNode", "other_side") instance=ExtResource("15_mctxq")]
+transform = Transform3D(-8.74228e-08, 0, 1, 0, 2, 0, -2, 0, -4.37114e-08, -65.2276, 0.411249, -17.6504)
+PlayerNode = NodePath("../XROrigin3D")
+other_side = NodePath("../TeleportTrigger3")
+
+[node name="TeleportTrigger5" parent="." node_paths=PackedStringArray("PlayerNode", "other_side") instance=ExtResource("15_mctxq")]
+transform = Transform3D(-8.74228e-08, 0, 1, 0, 2, 0, -2, 0, -4.37114e-08, -53.0187, 54.3181, -2.38801)
+PlayerNode = NodePath("../XROrigin3D")
+other_side = NodePath("../TeleportTrigger6")
+
+[node name="TeleportTrigger6" parent="." node_paths=PackedStringArray("PlayerNode", "other_side") instance=ExtResource("15_mctxq")]
+transform = Transform3D(-8.74228e-08, 0, 1, 0, 2, 0, -2, 0, -4.37114e-08, -65.2276, 0.411249, -3.95574)
+PlayerNode = NodePath("../XROrigin3D")
+other_side = NodePath("../TeleportTrigger5")
+
+[node name="TeleportTrigger7" parent="." node_paths=PackedStringArray("PlayerNode", "other_side") instance=ExtResource("15_mctxq")]
+transform = Transform3D(-8.74228e-08, 0, 1, 0, 2, 0, -2, 0, -4.37114e-08, -53.0187, 54.3181, 11.4409)
+PlayerNode = NodePath("../XROrigin3D")
+other_side = NodePath("../TeleportTrigger8")
+
+[node name="TeleportTrigger8" parent="." node_paths=PackedStringArray("PlayerNode", "other_side") instance=ExtResource("15_mctxq")]
+transform = Transform3D(-8.74228e-08, 0, 1, 0, 2, 0, -2, 0, -4.37114e-08, -65.2276, 0.411249, 9.8732)
+PlayerNode = NodePath("../XROrigin3D")
+other_side = NodePath("../TeleportTrigger7")
+
+[node name="TeleportTrigger9" parent="." node_paths=PackedStringArray("PlayerNode", "other_side") instance=ExtResource("15_mctxq")]
+transform = Transform3D(-8.74228e-08, 0, 1, 0, 2, 0, -2, 0, -4.37114e-08, -53.0187, 54.3181, 24.9545)
+PlayerNode = NodePath("../XROrigin3D")
+other_side = NodePath("../TeleportTrigger10")
+
+[node name="TeleportTrigger10" parent="." node_paths=PackedStringArray("PlayerNode", "other_side") instance=ExtResource("15_mctxq")]
+transform = Transform3D(-8.74228e-08, 0, 1, 0, 2, 0, -2, 0, -4.37114e-08, -65.2276, 0.411249, 23.3868)
+PlayerNode = NodePath("../XROrigin3D")
+other_side = NodePath("../TeleportTrigger9")
+
+[node name="TeleportTrigger11" parent="." node_paths=PackedStringArray("PlayerNode", "other_side") instance=ExtResource("15_mctxq")]
+transform = Transform3D(-8.74228e-08, 0, 1, 0, 2, 0, -2, 0, -4.37114e-08, -86.0318, 19.5096, 12.0725)
+PlayerNode = NodePath("../XROrigin3D")
+other_side = NodePath("../TeleportTrigger12")
+
+[node name="TeleportTrigger12" parent="." node_paths=PackedStringArray("PlayerNode", "other_side") instance=ExtResource("15_mctxq")]
+transform = Transform3D(-8.74228e-08, 0, 1, 0, 2, 0, -2, 0, -4.37114e-08, -78.116, 0.129295, 11.6344)
+PlayerNode = NodePath("../XROrigin3D")
+other_side = NodePath("../TeleportTrigger11")
+
+[node name="TeleportTrigger13" parent="." node_paths=PackedStringArray("PlayerNode", "other_side") instance=ExtResource("15_mctxq")]
+transform = Transform3D(-8.74228e-08, 0, 1, 0, 2, 0, -2, 0, -4.37114e-08, -86.0318, 21.5485, 33.0398)
+PlayerNode = NodePath("../XROrigin3D")
+other_side = NodePath("../TeleportTrigger14")
+
+[node name="TeleportTrigger14" parent="." node_paths=PackedStringArray("PlayerNode", "other_side") instance=ExtResource("15_mctxq")]
+transform = Transform3D(-8.74228e-08, 0, -1, 0, 2, 0, 2, 0, -4.37114e-08, -94.2786, 0.129295, 33.9954)
+PlayerNode = NodePath("../XROrigin3D")
+other_side = NodePath("../TeleportTrigger13")
+
+[node name="level_location" parent="." instance=ExtResource("16_nm5af")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -75.0332, 0, -17.4379)
 
 [editable path="XROrigin3D"]

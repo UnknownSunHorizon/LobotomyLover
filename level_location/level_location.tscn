@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://dtj5uly465r3g"]
+
+[ext_resource type="PackedScene" uid="uid://ds1q0vh7g73po" path="res://level_location/level_location.blend" id="1_itvrq"]
+
+[node name="level_location" instance=ExtResource("1_itvrq")]
+
+[node name="Point_014" parent="." index="12"]
+visible = false
+
+[node name="Point_015" parent="." index="13"]
+visible = false
+
+[node name="Point_001" parent="." index="14"]
+visible = false
+
+[node name="Point_002" parent="." index="15"]
+visible = false
+
+[node name="Point_003" parent="." index="16"]
+visible = false
+
+[node name="road_lights" parent="." index="27"]
+visible = false
