@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" script_class="VFEZMaterial3D" load_steps=8 format=3 uid="uid://c2niy505xrygn"]
 
-[ext_resource type="Script" uid="uid://xuxgxv1r6mpg" path="res://addons/VFEZ-godot-2.0.1/vfez_material_3d.gd" id="1_72ja7"]
+[ext_resource type="Script" uid="uid://guidvnjm1xrl" path="res://addons/VFEZ-godot-2.0.1/vfez_material_3d.gd" id="1_72ja7"]
 
 [sub_resource type="Shader" id="Shader_72ja7"]
 resource_name = "VFEZ3DPreview"
